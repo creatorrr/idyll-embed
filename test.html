@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+      }
+
+      .idyll-root {
+        padding: 0 !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="dist/idyll-embed.min.js"></script>
+    <script>
+      // Test accessing components directly
+      console.log('IdyllComponents available:', Object.keys(window.IdyllComponents));
+      console.log('Header component:', window.Header);
+      
+      // Create a new div where Idyll will inject content.
+      var div = document.createElement('div');
+      document.body.appendChild(div);
+
+      // Test with various components
+      var idyllMarkup = `
+      [Header title:"Testing Components" author:"Test Author" fullWidth:true /]
+
+      Normal paragraph text.
+
+      [Button onClick:\`alert('Button clicked!')\`]Click me[/Button]
+
+      [var name:"myVar" value:5 /]
+
+      Value: [Display value:myVar /]
+
+      [Range value:myVar min:0 max:10 /]
+      `;
+
+      // Instantiate the Idyll runtime.
+      Idyll.render(idyllMarkup, div, {
+        theme: 'default',
+        layout: 'centered',
+        injectThemeCSS: true,
+        injectLayoutCSS: true
+      });
+    </script>
+  </body>
+</html>

@@ -25,9 +25,93 @@
       var idyllMarkup = `
       [Header title:"Hello World" author:"Matthew Conlen" fullWidth:true  /]
 
-      Normal paragraph text.
+      [var name:'currentStep' value:1 /]
+      [var name:'fullData' value:\`[
+        {complexity: 0, understanding: 30},
+        {complexity: 1, understanding: 40},
+        {complexity: 2, understanding: 50},
+        {complexity: 3, understanding: 65},
+        {complexity: 4, understanding: 75},
+        {complexity: 5, understanding: 82},
+        {complexity: 6, understanding: 86},
+        {complexity: 7, understanding: 88},
+        {complexity: 8, understanding: 87},
+        {complexity: 9, understanding: 83},
+        {complexity: 10, understanding: 75},
+        {complexity: 11, understanding: 65},
+        {complexity: 12, understanding: 50},
+        {complexity: 13, understanding: 40},
+        {complexity: 14, understanding: 35},
+        {complexity: 15, understanding: 40},
+        {complexity: 16, understanding: 50},
+        {complexity: 17, understanding: 65},
+        {complexity: 18, understanding: 80},
+        {complexity: 19, understanding: 90},
+        {complexity: 20, understanding: 95},
+        {complexity: 21, understanding: 97},
+        {complexity: 22, understanding: 98},
+        {complexity: 23, understanding: 99},
+        {complexity: 24, understanding: 99}
+      ]\` /]
 
-      ## Subheader
+      [derived name:'visibleData' value:\`currentStep === 1 ? fullData.slice(0, 8) : currentStep === 2 ? fullData.slice(0, 14) : fullData\` /]
+
+      [div className:'chart-container']
+        #### The Shape of Understanding
+
+        [Chart
+          type:'line'
+          data:visibleData
+          x:'complexity'
+          y:'understanding'
+          range:\`[0, 100]\`
+          domain:\`[0, 25]\`
+        /]
+        [div className:'button-container' style:\`{textAlign: "center"}\`]
+          [em] Complexity [/em]
+          [Button
+            style:\`{
+              display: "inline",
+              background: currentStep <= 1 ? 'gray' : 'white',
+              cursor: currentStep <= 1 ? "not-allowed" : "pointer",
+            }\`
+            disabled:\`currentStep <= 1\`
+            onClick:\`currentStep = Math.max(1, currentStep - 1)\`
+          ]
+            -
+          [/Button]
+          [Button
+            style:\`{
+              display: "inline",
+              background: currentStep >= 3 ? 'gray' : 'white',
+              cursor: currentStep >= 3 ? "not-allowed" : "pointer",
+            }\`
+            disabled:\`currentStep >= 3\`
+            onClick:\`currentStep = Math.min(3, currentStep + 1)\`
+          ]
+            +
+          [/Button]
+        [/div]
+        [div className:'narrative-text']
+          [Conditional if:\`currentStep === 1\`]
+            We used to think it was simple: add complexity, gain understanding.
+            Until you hit the peak...
+          [/Conditional]
+          [Conditional if:\`currentStep === 2\`]
+            Then confusion sets in.
+            More parameters, *less* understanding.
+
+            The model memorizes but doesn't comprehend.
+          [/Conditional]
+          [Conditional if:\`currentStep === 3\`]
+            But keep going...
+            Something beautiful emerges.
+            A deeper kind of understanding.
+
+            **The double descent.**
+          [/Conditional]
+        [/div]
+      [/div]
 
       `;
 

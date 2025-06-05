@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+      }
+
+      .idyll-root {
+        padding: 0 !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="dist/idyll-embed.min.js"></script>
+    <script>
+      // Add error handling
+      window.addEventListener('error', function(e) {
+        console.error('Error details:', e);
+        console.error('Stack:', e.error?.stack);
+      });
+
+      try {
+        console.log('Idyll object:', window.Idyll);
+        console.log('IdyllComponents:', window.IdyllComponents);
+        
+        // Create a new div where Idyll will inject content.
+        var div = document.createElement('div');
+        document.body.appendChild(div);
+
+        // Simple test markup
+        var idyllMarkup = `
+        [Header title:"Debug Test" author:"Test Author" fullWidth:true /]
+
+        Testing unminified build.
+        `;
+
+        // Instantiate the Idyll runtime.
+        Idyll.render(idyllMarkup, div, {
+          theme: 'default',
+          layout: 'centered',
+          injectThemeCSS: true,
+          injectLayoutCSS: true
+        });
+      } catch (e) {
+        console.error('Caught error:', e);
+        console.error('Stack:', e.stack);
+      }
+    </script>
+  </body>
+</html>

@@ -5,25 +5,25 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --mode production",
+    "build:dev": "webpack --config webpack.config.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-loader": "^8.0.0",
-    "idyll-components": "^3.11.1",
-    "idyll-document": "^3.1.9",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "babel-loader": "8.x",
+    "idyll": "5.x"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-rc.2",
-    "@babel/preset-env": "^7.0.0-rc.2",
-    "@babel/preset-react": "^7.0.0-rc.2",
-    "babelify": "^9.0.0",
-    "browserify": "^16.2.2",
-    "uglify-js": "^3.4.8",
-    "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0"
+    "@babel/core": "7.x",
+    "@babel/plugin-transform-classes": "^7.27.1",
+    "@babel/preset-env": "7.x",
+    "@babel/preset-react": "7.x",
+    "babelify": "9.x",
+    "browserify": "16.x",
+    "terser-webpack-plugin": "^4.2.3",
+    "uglify-js": "3.x",
+    "webpack": "4.x",
+    "webpack-cli": "3.x"
   }
 }
